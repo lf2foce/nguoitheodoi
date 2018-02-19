@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+<h1>Channel</h1>
+
+<%= form_with(model: @video, class:"input-group mb-3") do |form| %>
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">Add channel link</span>
+  </div>
+
+  <%= form.text_field :link, class:"form-control", id:"basic-url" %>
+  <div class="input-group-prepend">
+    <%= form.submit "submit", class:"btn btn-primary" %>
+  </div>
+  
+<% end %>
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Link</th>
+      <th>Published at</th>
+      <th>Videos</th>
+      <th>Subs</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.title %></td>
+        <td><%= video.link %></td>
+        <td><%= video.published_at.strftime("%d-%m-%Y") %></td>
+        <td><%= video.likes %></td>
+        <td><%= video.dislikes %></td>
+        <td><img src="<%= video.uid %>" class="rounded-circle"></td>
+        <td><%= link_to 'Show', video %></td>
+        <td><%= link_to 'Edit', edit_video_path(video) %></td>
+        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>
