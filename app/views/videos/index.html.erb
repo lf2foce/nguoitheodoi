@@ -35,7 +35,7 @@
       <tr>
         <td><%= video.title %></td>
         <td><%= video.link %></td>
-        <td><%= video.published_at.strftime("%d-%m-%Y") %></td>
+        <td><% video.published_at.strftime("%d-%m-%Y") unless video.published_at.nil? %><td>
         <td><%= video.likes %></td>
         <td><%= video.dislikes %></td>
         <td><img src="<%= video.uid %>" class="rounded-circle"></td>
