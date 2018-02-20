@@ -31,6 +31,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'yt', '~> 0.28.0'
 gem 'jquery-rails'
+
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

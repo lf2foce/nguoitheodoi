@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Videos") do |sheet|
+sheet.add_row %w{Title Videos Subscribers Channel_link Channel_ID}
+  @videos.each do |channel|
+    sheet.add_row [channel.title, channel.likes, channel.dislikes, channel.link, channel.link.gsub("https://www.youtube.com/channel/","")]
+  end
+end

@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/randym/axlsx.git
+  revision: c8ac844572b25fda358cc01d2104720c4c42f450
+  ref: c8ac844
+  specs:
+    axlsx (2.1.0.pre)
+      htmlentities (~> 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (>= 1.6.6)
+      rubyzip (>= 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +58,9 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    axlsx_rails (0.5.1)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bindex (0.5.0)
     bootsnap (1.1.8)
       msgpack (~> 1.0)
@@ -76,9 +90,11 @@ GEM
     duktape (1.6.1.0)
     erubi (1.7.0)
     execjs (2.7.0)
+    ffi (1.9.21)
     ffi (1.9.21-x64-mingw32)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    htmlentities (4.3.4)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -101,11 +117,15 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    msgpack (1.2.2)
     msgpack (1.2.2-x64-mingw32)
     multi_json (1.13.1)
     nio4r (2.2.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     nokogiri (1.8.2-x64-mingw32)
       mini_portile2 (~> 2.3.0)
+    pg (1.0.0)
     pg (1.0.0-x64-mingw32)
     public_suffix (3.0.2)
     puma (3.11.2)
@@ -188,9 +208,12 @@ GEM
       activesupport
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
+  axlsx!
+  axlsx_rails
   bootsnap (>= 1.1.0)
   byebug
   capybara (~> 2.15)
@@ -202,6 +225,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.0.rc1)
+  rubyzip (>= 1.2.1)
   sass-rails (~> 5.0)
   selenium-webdriver
   turbolinks (~> 5)

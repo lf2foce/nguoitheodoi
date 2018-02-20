@@ -6,6 +6,17 @@ class VideosController < ApplicationController
   def index
     @videos = Video.all
     @video = Video.new
+    
+    respond_to do |format|
+      format.html
+      format.xlsx {
+    response.headers['Content-Disposition'] = 'attachment; filename="all_channels.xlsx"'
+    }
+    end
+    
+    @videos.each do |channel|
+      refresh(channel)
+    end 
   end
 
   # GET /videos/1
@@ -71,5 +82,16 @@ class VideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
       params.require(:video).permit(:title, :link, :published_at, :likes, :dislikes, :uid)
+    end
+    
+    def refresh(channel_link)
+    	resource = Yt::Channel.new id: channel_link.link.gsub("https://www.youtube.com/channel/","")
+    	channel_link.uid = resource.thumbnail_url
+    	channel_link.title = resource.title
+    	channel_link.likes = resource.videos.count
+    	channel_link.dislikes = resource.subscriber_count
+    	channel_link.published_at = resource.published_at
+  	rescue Yt::Errors::NoItems
+  		channel_link.link = 'check again'
     end
 end

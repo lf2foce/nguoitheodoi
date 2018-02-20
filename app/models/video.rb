@@ -1,4 +1,5 @@
 class Video < ApplicationRecord
+  validates :link, presence: true
 	before_save :resource
   
   	private
@@ -22,5 +23,16 @@ class Video < ApplicationRecord
     	self.published_at = channel.published_at
   	rescue Yt::Errors::NoItems
   		self.link = 'please try again'
+  	end
+  	
+  	def refresh(channel_link)
+    	resource = Yt::Channel.new id: channel_link.link.gsub("https://www.youtube.com/channel/","")
+    	channel_link.uid = resource.thumbnail_url
+    	channel_link.title = resource.title
+    	channel_link.likes = resource.videos.count
+    	channel_link.dislikes = resource.subscriber_count
+    	channel_link.published_at = resource.published_at
+  	rescue Yt::Errors::NoItems
+  		channel_link.link = 'check'
   	end
 end
