@@ -22,8 +22,9 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
+      
       <th>Published at</th>
+      <th>View count</th>
       <th>Videos</th>
       <th>Subs</th>
       <th>Image</th>
@@ -35,8 +36,9 @@
     <% @videos.each do |video| %>
       <tr>
         <td><%= video.title %></td>
-        <td><%= video.description %></td>
+        
         <td><%= video.published_at.strftime("%m-%Y") unless video.published_at.nil? %></td>
+        <td><%= video.view_count %></td>
         <td><%= video.likes %></td>
         <td><%= video.dislikes %></td>
         <td><img src="<%= video.uid %>" class="rounded-circle"></td>
