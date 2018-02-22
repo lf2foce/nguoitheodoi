@@ -38,9 +38,9 @@
         <td><%= video.title %></td>
         
         <td><%= video.published_at.strftime("%m-%Y") unless video.published_at.nil? %></td>
-        <td><%= video.view_count %></td>
+        <td><%= number_with_delimiter(video.view_count) %></td>
         <td><%= video.likes %></td>
-        <td><%= video.dislikes %></td>
+        <td><%= number_with_delimiter(video.dislikes) %></td>
         <td><img src="<%= video.uid %>" class="rounded-circle"></td>
         <td><%= link_to 'Show', video %></td>
         <td><%= link_to 'Edit', edit_video_path(video) %></td>
