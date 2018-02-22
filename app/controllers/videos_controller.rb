@@ -81,7 +81,8 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :link, :published_at, :likes, :dislikes, :uid)
+      params.require(:video).permit(:title, :link, :published_at, 
+      :likes, :dislikes, :uid, :description, :view_count)
     end
     
     def refresh(channel_link)
@@ -91,6 +92,8 @@ class VideosController < ApplicationController
     	channel_link.likes = resource.videos.count
     	channel_link.dislikes = resource.subscriber_count
     	channel_link.published_at = resource.published_at
+    	channel_link.description = resource.description
+    	channel_link.view_count = resource.view_count
   	rescue Yt::Errors::NoItems
   		channel_link.link = 'check again'
     end
